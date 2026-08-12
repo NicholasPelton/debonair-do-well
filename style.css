@@ -1,0 +1,272 @@
+/* ---------------------------------------------------------
+   debonair-do-well — a lexicon of one
+--------------------------------------------------------- */
+
+:root{
+  --paper:      #f3ecdd;
+  --paper-deep: #ebe0c9;
+  --card:       #faf6ec;
+  --ink:        #211c16;
+  --ink-soft:   #55503f;
+  --ink-faint:  #8a8368;
+  --rule:       rgba(33, 28, 22, 0.24);
+  --rule-soft:  rgba(33, 28, 22, 0.13);
+  --maroon:     #7a2130;
+
+  --serif-display: "Fraunces", "Iowan Old Style", ui-serif, Georgia, serif;
+  --serif-text:    "Newsreader", "Iowan Old Style", ui-serif, Georgia, serif;
+
+  --measure: 40rem;
+}
+
+*, *::before, *::after{ box-sizing: border-box; }
+
+html{
+  -webkit-text-size-adjust: 100%;
+}
+
+body{
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif-text);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+
+  /* faint paper grain */
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(33,28,22,0.05) 1px, transparent 0);
+  background-size: 3px 3px;
+}
+
+.page{
+  max-width: 74rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+img{ max-width: 100%; height: auto; display: block; }
+
+/* ---------------------------------------------------------
+   Hero
+--------------------------------------------------------- */
+
+.hero{
+  padding: 3.5rem 0 2rem;
+  text-align: center;
+}
+
+.hero__eyebrow{
+  margin: 0 0 2.25rem;
+  font-family: var(--serif-text);
+  font-style: italic;
+  font-size: 0.8rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  opacity: 0;
+  animation: rise 0.9s ease-out 0.05s forwards;
+}
+
+.hero__eyebrow span{
+  position: relative;
+  padding: 0 1.1em;
+}
+.hero__eyebrow span::before,
+.hero__eyebrow span::after{
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 2.75rem;
+  height: 1px;
+  background: var(--rule);
+}
+.hero__eyebrow span::before{ left: -2.75rem; }
+.hero__eyebrow span::after{ right: -2.75rem; }
+
+.hero__portrait{
+  max-width: 15rem;
+  margin: 0 auto;
+  opacity: 0;
+  animation: rise 0.9s ease-out 0.2s forwards;
+  filter: drop-shadow(0 18px 26px rgba(33, 28, 22, 0.16));
+}
+
+.hero__wordmark{
+  max-width: 30rem;
+  margin: -1.75rem auto 0;
+  padding: 0 1rem;
+  opacity: 0;
+  animation: rise 0.9s ease-out 0.4s forwards;
+}
+
+@keyframes rise{
+  from{ opacity: 0; transform: translateY(14px); }
+  to{ opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .hero__eyebrow, .hero__portrait, .hero__wordmark{
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* ---------------------------------------------------------
+   Dictionary entry
+--------------------------------------------------------- */
+
+.entry{
+  max-width: var(--measure);
+  margin: 1rem auto 5rem;
+  padding: 0 1rem;
+}
+
+.entry__rule{
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--rule) 12%, var(--rule) 88%, transparent);
+}
+
+.entry__headword{
+  margin: 2.1rem 0 0.35rem;
+  font-family: var(--serif-display);
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-size: clamp(1.9rem, 5vw, 2.75rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.entry__alt{
+  display: block;
+  margin-top: 0.4rem;
+  font-family: var(--serif-text);
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1rem;
+  color: var(--ink-soft);
+}
+.entry__alt em{ font-style: italic; color: var(--ink-faint); }
+
+.entry__ipa{
+  margin: 1.1rem 0 0;
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+}
+.entry__dash{ color: var(--ink-faint); }
+.entry__respell{ color: var(--ink-faint); }
+
+.entry__pos{
+  margin: 0.9rem 0 0;
+  font-family: var(--serif-display);
+  font-style: italic;
+  font-weight: 440;
+  font-size: 1rem;
+  color: var(--maroon);
+}
+
+.entry__definition{
+  margin: 1.1rem 0 2rem;
+  font-size: 1.28rem;
+  line-height: 1.55;
+}
+
+.entry__num{
+  margin-right: 0.4em;
+  font-family: var(--serif-display);
+  font-weight: 600;
+  color: var(--ink-faint);
+}
+
+/* ---------------------------------------------------------
+   Gallery
+--------------------------------------------------------- */
+
+.gallery{
+  padding: 0 0 5rem;
+}
+
+.gallery__heading{
+  margin: 0 0 2rem;
+  text-align: center;
+  font-family: var(--serif-text);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.82rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.gallery__grid{
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.35rem;
+}
+
+.gallery__item{
+  margin: 0;
+  padding: 1.4rem 1.4rem 1.1rem;
+  background: var(--card);
+  border: 1px solid var(--rule-soft);
+  box-shadow: 0 10px 22px rgba(33, 28, 22, 0.07);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.gallery__item:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 16px 30px rgba(33, 28, 22, 0.12);
+}
+
+.gallery__item img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  flex: 1;
+}
+
+.gallery__item figcaption{
+  margin-top: 0.9rem;
+  text-align: center;
+  font-family: var(--serif-text);
+  font-style: italic;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  color: var(--ink-faint);
+}
+
+.gallery__item--square{ grid-column: span 2; aspect-ratio: 1 / 1; }
+.gallery__item--wide{   grid-column: span 3; aspect-ratio: 16 / 10; }
+.gallery__item--tall{   grid-column: span 3; aspect-ratio: 5 / 4; }
+.gallery__item--banner{ grid-column: span 6; aspect-ratio: 20 / 6; }
+
+@media (max-width: 860px){
+  .gallery__grid{ grid-template-columns: repeat(2, 1fr); }
+  .gallery__item--square,
+  .gallery__item--wide,
+  .gallery__item--tall{ grid-column: span 2; aspect-ratio: 4 / 3; }
+  .gallery__item--banner{ grid-column: span 2; aspect-ratio: 16 / 7; }
+}
+
+@media (max-width: 480px){
+  .hero{ padding-top: 2.5rem; }
+  .entry__definition{ font-size: 1.15rem; }
+  .gallery__item{ padding: 1.1rem 1.1rem 0.9rem; }
+}
+
+/* ---------------------------------------------------------
+   Footer
+--------------------------------------------------------- */
+
+.footer{
+  padding: 0 0 3.5rem;
+  text-align: center;
+  font-family: var(--serif-display);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink-faint);
+}
